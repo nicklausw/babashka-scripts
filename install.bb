@@ -4,10 +4,7 @@
          '[clojure.string :as str]
          '[babashka.process :refer [shell]])
 
-(def bin-dir (str (fs/home) "/bin/"))
-
-(when-not (fs/exists? bin-dir)
-  (fs/create-dir bin-dir))
+(def bin-dir "/usr/local/bin/")
 
 (defn create-symlink
   [file link]

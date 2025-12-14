@@ -1,6 +1,6 @@
 # nicklausw's babashka scripts
 
-To install the command line tools, run [install.bb](./install.bb) and make sure `$HOME/bin` is in your PATH.
+To install the command line tools, run [install.bb](./install.bb) as sudo. Everything gets put in `/usr/local/bin`.
 
 Note: to pass regexes on the command line, precede string quotes with `reg:`.
 
