@@ -16,7 +16,8 @@
    (bulk-rename "." replace-this with-this))
   ([path replace-this with-this]
    (let [files (map fs/file-name (fs/list-dir path))
-         renamed-files (map #(str/replace % replace-this with-this) files)
+         replace-regex (re-pattern replace-this)
+         renamed-files (map #(str/replace % replace-regex with-this) files)
          mapped-files (map list files renamed-files)
          filtered-files (filter #(not= (first %) (second %)) mapped-files)]
      (if (empty? filtered-files)
@@ -33,9 +34,4 @@
                (println "operation succeeded."))
              (println "operation aborted."))))))))
 
-(let [[arg1 arg2 arg3] *command-line-args*
-      arg1 (if (str/starts-with? arg1 "reg:") (re-pattern (subs arg1 4)) arg1)
-      arg2 (if (str/starts-with? arg2 "reg:") (re-pattern (subs arg2 4)) arg2)]
-  (if arg3
-    (bulk-rename arg1 arg2 arg3)
-    (bulk-rename arg1 arg2)))
+(apply bulk-rename *command-line-args*)
