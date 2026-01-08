@@ -5,7 +5,7 @@
 
 (let [argc (count *command-line-args*)]
   (when-not (or (= argc 2) (= argc 3))
-    (println "args: [string/regex to replace] [string replacement]")
+    (println "args: [path?] [string/regex to replace] [string replacement]")
     (System/exit 1)))
 
 (defn bulk-rename
